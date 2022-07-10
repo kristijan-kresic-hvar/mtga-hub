@@ -19,6 +19,12 @@ body {
     position: relative;
 }
 
+.disabled-link {
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

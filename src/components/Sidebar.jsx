@@ -27,6 +27,10 @@ const Sidebar = () => {
     const [sets, setSets] = useState([])
     const [visible, setVisible] = useState(15);
 
+    const handleSidebarItemClick = () => {
+        window.innerWidth < 768 ? setActiveMenu(false) : false
+    }
+
     useEffect(() => {
         getAllSets()
             .then(data => {
@@ -79,7 +83,7 @@ const Sidebar = () => {
                     <div>
                         <p className="text-gray-400 m-3 mt-4 uppercase">Navigation</p>
                         <div>
-                            <NavLink to={`/home`} onClick={() => { }} className={({ isActive }) => isActive ? activeLink : normalLink}>
+                            <NavLink to={`/`} onClick={handleSidebarItemClick} className={({ isActive }) => isActive ? activeLink : normalLink}>
                                 <BiHomeAlt />
                                 <span className="w-xs">Home</span>
                             </NavLink>
@@ -87,8 +91,8 @@ const Sidebar = () => {
                     </div>
                     <div>
                         <p className="text-gray-400 m-3 mt-4 uppercase">Scryfall</p>
-                        <div>
-                            <NavLink to={`/#`} onClick={() => { }} className={({ isActive }) => isActive ? activeLink : normalLink}>
+                        <div className="disabled-link">
+                            <NavLink to={`/login`} onClick={handleSidebarItemClick} className={({ isActive }) => isActive ? activeLink : normalLink}>
                                 <FiLogIn />
                                 <span className="w-xs">Login</span>
                             </NavLink>
@@ -96,8 +100,8 @@ const Sidebar = () => {
                     </div>
                     <div>
                         <p className="text-gray-400 m-3 mt-4 uppercase">Apps</p>
-                        <div>
-                            <NavLink to={`/open-packs`} onClick={() => { }} className={({ isActive }) => isActive ? activeLink : normalLink}>
+                        <div className="disabled-link">
+                            <NavLink to={`/open-packs`} onClick={handleSidebarItemClick} className={({ isActive }) => isActive ? activeLink : normalLink}>
                                 <GiCardRandom />
                                 <span className="w-xs">Booster Pack Simulator</span>
                             </NavLink>
@@ -106,11 +110,11 @@ const Sidebar = () => {
                     <div>
                         <p className="text-gray-400 m-3 mt-4 uppercase">Cards</p>
                         <div>
-                            <NavLink to={`/cards/all`} onClick={() => { }} className={({ isActive }) => isActive ? activeLink : normalLink}>
+                            <NavLink to={`/cards/all`} onClick={handleSidebarItemClick} className={({ isActive }) => isActive ? activeLink : normalLink}>
                                 <BsFillGrid3X3GapFill />
                                 <span className="w-xs">All</span>
                             </NavLink>
-                            <NavLink to={`/cards/random`} onClick={() => { }} className={({ isActive }) => isActive ? activeLink : normalLink}>
+                            <NavLink to={`/cards/random`} onClick={handleSidebarItemClick} className={({ isActive }) => isActive ? activeLink : normalLink + " disabled-link"}>
                                 <GiPerspectiveDiceSixFacesRandom />
                                 <span className="w-xs">Random</span>
                             </NavLink>
@@ -122,13 +126,13 @@ const Sidebar = () => {
                             {!sets.length > 0 && <SkeletonTheme baseColor={currentMode === 'Dark' ? "#242424" : ""} highlightColor={currentMode === 'Dark' ? "#33373E" : ""}><Skeleton className="m-3 mb-5" count={20} /></SkeletonTheme>}
                             {sets?.slice(0, visible)?.map(set => (
                                 <div key={set.id}>
-                                    <NavLink to={`/sets/${set.id}`} key={set.id} onClick={() => { }} className={({ isActive }) => isActive ? activeLink : normalLink}>
+                                    <NavLink to={`/sets/${set.id}`} key={set.id} onClick={handleSidebarItemClick} className={({ isActive }) => isActive ? activeLink : normalLink}>
                                         <svg style={{ background: `${currentMode === 'Dark' ? '#ffffff' : '#000000'}`, mask: `url(${set.icon_svg_uri}) no-repeat center` }} xmlns={set.icon_svg_uri} alt="set symbol" className="w-4 object-contain max-h-4" />
                                         <span className="w-xs">{set.name}</span>
                                     </NavLink>
 
                                     {set?.children?.map(child => (
-                                        <NavLink to={`/sets/${child.id}`} key={child.id} onClick={() => { }} className={({ isActive }) => isActive ? activeLink : normalLink} style={{ marginLeft: '1.5rem' }}>
+                                        <NavLink to={`/sets/${child.id}`} key={child.id} onClick={handleSidebarItemClick} className={({ isActive }) => isActive ? activeLink : normalLink} style={{ marginLeft: '1.5rem' }}>
                                             <svg style={{ background: `${currentMode === 'Dark' ? '#ffffff' : '#000000'}`, mask: `url(${child.icon_svg_uri}) no-repeat center` }} xmlns={child.icon_svg_uri} alt="set symbol" className="w-4 object-contain max-h-4" />
                                             <span className="w-xs">{child.name}</span>
                                         </NavLink>

@@ -29,7 +29,7 @@ const Navbar = () => {
     const { activeMenu, setActiveMenu } = useStateContext()
 
     return (
-        <div style={{ left: `${activeMenu ? "384px" : "0"}`, zIndex: '999' }} className="bg-[#3416DE] dark:bg-[#1F1D36] flex justify-start items-center p-2 fixed right-0 top-0">
+        <div style={{ left: '0', zIndex: '999' }} className={`${activeMenu ? 'lg:ml-[384px]' : 'ml-0'} bg-[#3416DE] dark:bg-[#1F1D36] flex justify-start items-center p-2 fixed right-0 top-0`}>
             <NavButton
                 title="Menu"
                 customFunc={() => setActiveMenu(prevActiveMenu => !prevActiveMenu)}

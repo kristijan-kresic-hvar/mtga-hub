@@ -79,13 +79,8 @@ const App = () => {
 
                             <Routes>
                                 {/* Navigation */}
-                                <Route path="/" element={<Home />} />
+                                <Route exact path="/" element={<Home />} />
                                 <Route path="/home" element={<Home />} />
-
-                                {/* Featured */}
-                                {/* <Route path="/orders" element={<Orders />} />
-                                <Route path="/employees" element={<Employees />} />
-                                <Route path="/customers" element={<Customers />} /> */}
 
                                 {/* Cards */}
                                 <Route path="/cards/all" element={<CardList />} />
