@@ -58,7 +58,7 @@ const App = () => {
                         </TooltipComponent>
                     </div>
 
-                    <div className="w-96 fixed sidebar dark:bg-secondary-dark-bg">
+                    <div style={{ zIndex: '99999' }} className="w-96 fixed sidebar bg-white dark:bg-secondary-dark-bg">
                         <Sidebar />
                     </div>
 

@@ -6,6 +6,7 @@
 
 body,
 html {
+    min-height: 100vh;
     width: 100%;
     height: 100%;
 }
@@ -47,6 +48,11 @@ body {
 #cardModal {
     height: auto !important;
     max-height: 100% !important;
+}
+
+.e-dlg-container .e-dlg-center-center,
+.e-dlg-container .e-quick-popup-wrapper.e-device {
+    z-index: 10000000000000000000000000000000 !important;
 }
 
 .card-dialog-light .e-dlg-content,

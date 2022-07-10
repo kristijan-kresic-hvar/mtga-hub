@@ -64,9 +64,13 @@ const Sidebar = () => {
         sets.length > 0 ? setLoading(false) : setLoading(true)
     }, [sets])
 
+    useEffect(() => {
+        window.innerWidth < 768 ? setActiveMenu(false) : false
+    }, [])
+
     return (
 
-        <div ref={sidebarRef} style={{ display: `${activeMenu ? "block" : "none"}`, scrollbarGutter: 'stable both-edges' }} className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
+        <div ref={sidebarRef} style={{ display: `${activeMenu ? "block" : "none"}`, scrollbarGutter: 'stable both-edges' }} className="h-screen ml-3 md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
 
             <div>
                 <div className="flex justify-between items-center">
@@ -74,7 +78,7 @@ const Sidebar = () => {
                         <img src={mtgHubLogo} alt="new capenna symbol" className="w-11" /> <span className="font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-rose-800 to-orange-600">MTG HUB</span>
                     </Link>
                     <TooltipComponent content="Menu" position="BottomCenter">
-                        <button type="button" className="text-2xl rounded-full p-3 hover:bg-light-gray mt-4 block md:hidden" onClick={() => setActiveMenu(false)}>
+                        <button type="button" className="text-2xl rounded-full p-3 hover:bg-light-gray mt-4 block lg:hidden" onClick={() => setActiveMenu(false)}>
                             <MdOutlineCancel />
                         </button>
                     </TooltipComponent>

@@ -111,12 +111,12 @@ const CardList = () => {
     }, [currentPage])
 
     return (
-        <div style={{ marginLeft: '72px', marginRight: '72px' }} className="mt-20 mb-4">
-            <div className="allcardsgrid h-full grid grid-cols-1 gap-8 xs:ml-40  sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 lg:ml-0">
+        <div className="mt-20 mb-4">
+            <div className=" ml-4 mr-4 allcardsgrid h-full grid grid-cols-2 gap-4 md:gap-8 xs:ml-40 md:grid-cols-3 2xl:grid-cols-4 3xl:grid-cols-5 lg:ml-0 place-items-center">
                 {(
                     !cards?.length > 0 || loading) && noData === false && cardPreloadersCount.map((_, index) => (
                         <SkeletonTheme key={index} baseColor={currentMode === 'Dark' ? "#33373E" : ""} highlightColor={currentMode === 'Dark' ? "#242424" : ""}>
-                            <Skeleton style={{ width: 'auto !important', minWidth: '500px !important', height: '100%' }} height={400} />
+                            <Skeleton style={{ width: 'auto !important', minHeight: 'auto', height: 'auto !important', maxHeight: '300px' }} width={200} height={300} />
                         </SkeletonTheme>
                     ))}
                 {cards?.map((card, index) => (
