@@ -21,7 +21,7 @@ body {
     max-width: 3840px;
     min-width: 340;
     margin: 0 auto;
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 
 .disabled-link {
