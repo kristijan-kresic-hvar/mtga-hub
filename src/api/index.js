@@ -10,10 +10,10 @@ export const getAllSets = () => {
 }
 
 // Get all cards
-export const getAllCards = (page = 1) => {
+export const getAllCards = (page = 1, perPage = 100) => {
     if (!process.env.REACT_APP_GET_ALL_CARDS) return false
 
-    return axios.get(`${process.env.REACT_APP_GET_ALL_CARDS}?page=${page}`)
+    return axios.get(`${process.env.REACT_APP_GET_ALL_CARDS}?page=${page}&pageSize=${perPage}`)
         .then(response => {
             response.data.total = response?.headers["total-count"]
             return response?.data

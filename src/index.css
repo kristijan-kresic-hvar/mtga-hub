@@ -18,6 +18,10 @@ body {
     box-sizing: border-box;
     scrollbar-gutter: 'stable both-edges';
     position: relative;
+    max-width: 3840px;
+    min-width: 340;
+    margin: 0 auto;
+    overflow-x: scroll;
 }
 
 .disabled-link {
@@ -45,9 +49,19 @@ body {
     padding: .8rem 1.8rem !important;
 }
 
+@media only screen and (max-width: 810px) {
+    .e-large {
+        padding: .4rem 1.4rem !important;
+    }
+}
+
 #cardModal {
     height: auto !important;
-    max-height: 100% !important;
+    max-height: 90vh !important;
+}
+
+#cardModal .e-dlg-header {
+    overflow-x: scroll !important;
 }
 
 .e-dlg-container .e-dlg-center-center,
@@ -75,6 +89,10 @@ body {
 .card-dialog-dark .e-dlg-header,
 .card-dialog-dark .e-btn-icon {
     color: #d4d4d4 !important;
+}
+
+.card-dialog-dark .e-icon-btn:hover .e-btn-icon {
+    color: black !important;
 }
 
 @media only screen and (min-width: 2560px) {

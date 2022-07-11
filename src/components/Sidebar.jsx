@@ -78,7 +78,7 @@ const Sidebar = () => {
                         <img src={mtgHubLogo} alt="new capenna symbol" className="w-11" /> <span className="font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-rose-800 to-orange-600">MTG HUB</span>
                     </Link>
                     <TooltipComponent content="Menu" position="BottomCenter">
-                        <button type="button" className="text-2xl rounded-full p-3 hover:bg-light-gray mt-4 block lg:hidden" onClick={() => setActiveMenu(false)}>
+                        <button type="button" className="mr-3 text-2xl rounded-full p-3 hover:bg-light-gray mt-4 block lg:hidden dark:text-white dark:hover:bg-black" onClick={() => setActiveMenu(false)}>
                             <MdOutlineCancel />
                         </button>
                     </TooltipComponent>

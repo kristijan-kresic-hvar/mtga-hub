@@ -26,13 +26,24 @@ const NavButton = ({ title, customFunc, icon }) => {
 
 const Navbar = () => {
 
-    const { activeMenu, setActiveMenu } = useStateContext()
+    const { activeMenu, setActiveMenu, themeSettings, setThemeSettings } = useStateContext()
+
+    const handleNavMenuButtonClick = () => {
+        if (window.innerWidth < 1024) {
+            if (themeSettings) {
+                setThemeSettings(false)
+            }
+            setActiveMenu(prevState => !prevState)
+        } else {
+            setActiveMenu(prevState => !prevState)
+        }
+    }
 
     return (
         <div style={{ left: '0', zIndex: '999' }} className={`${activeMenu ? 'lg:ml-[384px]' : 'ml-0'} bg-[#3416DE] dark:bg-[#1F1D36] flex justify-start items-center p-2 fixed right-0 top-0`}>
             <NavButton
                 title="Menu"
-                customFunc={() => setActiveMenu(prevActiveMenu => !prevActiveMenu)}
+                customFunc={handleNavMenuButtonClick}
                 icon={<AiOutlineMenu />}
             />
             {!activeMenu && <Link to="/" onClick={() => { }} className="items-center text-2xl gap-3 ml-3 flex font-extrabold tracking-tight dark:text-white text-slate-900">
