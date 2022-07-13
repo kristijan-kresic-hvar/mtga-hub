@@ -10,12 +10,16 @@ export const getAllSets = () => {
 }
 
 // Get all cards
-export const getAllCards = (page = 1, perPage = 100) => {
+export const getAllCards = (page = 1, perPage = 50) => {
     if (!process.env.REACT_APP_GET_ALL_CARDS) return false
 
     return axios.get(`${process.env.REACT_APP_GET_ALL_CARDS}?page=${page}&pageSize=${perPage}`)
         .then(response => {
+
+            console.log(response, "RESPONSE FROM API")
+
             response.data.total = response?.headers["total-count"]
+            response.data.has_more = response?.has_more
             return response?.data
         })
         .catch(error => console.log(error.message))
@@ -27,8 +31,6 @@ export const getAllCardsInSet = (url, page = 1) => {
 
     return axios.get(`${url}&page=${page}`)
         .then(response => {
-
-            console.log(response)
 
             if (!response) return []
 

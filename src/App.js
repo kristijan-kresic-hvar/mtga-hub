@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { FiSettings } from 'react-icons/fi'
+import { IoIosArrowUp } from 'react-icons/io'
 import { TooltipComponent } from '@syncfusion/ej2-react-popups'
 import { DialogComponent } from '@syncfusion/ej2-react-popups';
 
@@ -26,12 +27,18 @@ const App = () => {
         currentMode
     } = useStateContext()
 
+    const [scrollTop, setScrollTop] = useState()
+
     const handleResize = () => {
         if (window.innerWidth <= 1023) {
             setActiveMenu(false)
         } else {
             setActiveMenu(true)
         }
+    }
+
+    const handleScroll = () => {
+        setScrollTop(window.document.documentElement.scrollTop)
     }
 
     const cardPopupAnimationSettings = { effect: 'Zoom', duration: 400, delay: 0 };
@@ -45,15 +52,43 @@ const App = () => {
         }
     }
 
+    const handleBackToTopClick = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+
 
     useEffect(() => {
         window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
     }, [])
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+
+        return () => window.removeEventListener('scroll', handleScroll)
+    })
 
     return (
         <div className={currentMode === 'Dark' ? 'dark h-full' : 'h-full'}>
             <BrowserRouter>
                 <div className="flex relative dark:bg-main-dark-bg">
+
+                    {/* TO TOP */}
+                    {scrollTop > 2000 && <div className="fixed right-8 bottom-24" style={{ zIndex: '1000' }}>
+                        <TooltipComponent content="Settings" position="Top">
+                            <button
+                                type="button"
+                                className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray dark:hover:text-black hover:text-black text-white bg-black dark:bg-[#33373E] dark:hover:bg-light-gray"
+                                style={{ borderRadius: '50%' }}
+                                onClick={handleBackToTopClick}
+                            >
+                                <IoIosArrowUp />
+                            </button>
+                        </TooltipComponent>
+                    </div>}
+
+                    {/* SETTINGS */}
                     <div className="fixed right-8 bottom-8" style={{ zIndex: '1000' }}>
                         <TooltipComponent content="Settings" position="Top">
                             <button

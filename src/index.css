@@ -43,6 +43,7 @@ body {
     bottom: 0 !important;
     left: 1rem !important;
     right: 2rem !important;
+    z-index: 999999;
 }
 
 .e-large {
@@ -62,6 +63,11 @@ body {
 
 #cardModal .e-dlg-header {
     overflow-x: scroll !important;
+}
+
+.e-dlg-header {
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
 }
 
 .e-dlg-container .e-dlg-center-center,

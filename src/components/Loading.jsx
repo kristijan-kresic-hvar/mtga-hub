@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ProgressBarComponent } from '@syncfusion/ej2-react-progressbar';
+import { useStateContext } from "../contexts/ContextProvider";
 const SAMPLE_CSS = `
      #control-container {
         padding: 0px !important;
@@ -26,29 +27,30 @@ const SAMPLE_CSS = `
         text-transform: capitalize;
     }
     `;
-export default class Loading extends React.Component {
-    linearFive;
+const Loading = () => {
+    let linearFive;
 
+    const { currentMode } = useStateContext()
 
-    render() {
-        return (<div>
-            <style>
-                {SAMPLE_CSS}
-            </style>
+    return (<div>
+        <style>
+            {SAMPLE_CSS}
+        </style>
+        <div>
             <div>
                 <div>
                     <div>
-                        <div>
-                            <ProgressBarComponent trackThickness={6} progressThickness={6} id="linearactive" ref={linear5 => this.linearFive = linear5} type='Linear' value={100} isIndeterminate={true} isActive={true} animation={{
-                                enable: true,
-                                duration: 1000,
-                                delay: 0,
-                            }}>
-                            </ProgressBarComponent>
-                        </div>
+                        <ProgressBarComponent trackThickness={6} progressThickness={6} id="linearactive" ref={linear5 => linearFive = linear5} type='Linear' trackColor={`${currentMode === 'Dark' ? '#242424' : 'rgba(0,0,0,0.3)'}`} progressColor={`${currentMode === 'Dark' ? '#AB1E32' : '#3416DE'}`} value={100} isIndeterminate={true} isActive={true} animation={{
+                            enable: true,
+                            duration: 1000,
+                            delay: 0,
+                        }}>
+                        </ProgressBarComponent>
                     </div>
                 </div>
             </div>
-        </div>);
-    }
+        </div>
+    </div>);
 }
+
+export default Loading
